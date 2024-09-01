@@ -6,13 +6,12 @@ from shared import TASK_QUEUE_NAME
 from temporalio.client import Client
 from temporalio.worker import Worker
 from workflow import TranslationWorkflow
-
-# TODO Uncomment the import statement below
-# import logging
+import logging
 
 
 async def main():
     # TODO Setup logging config and set level to INFO
+    logging.basicConfig(level=logging.INFO)
     client = await Client.connect("localhost:7233", namespace="default")
 
     # Run the worker

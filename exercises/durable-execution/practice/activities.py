@@ -15,6 +15,7 @@ class TranslationActivities:
     ) -> TranslationActivityOutput:
         # TODO Add a logging message using the activity logger at the info level
         # stating that the activity has been invoked. Be sure to include the input.
+        activity.logger.info(f"translate_term Activity invoked with input: {input}")
         base = f"http://localhost:9999/translate"
         url = f"{base}?term={urllib.parse.quote(input.term)}&lang={input.language_code}"
 
@@ -27,4 +28,6 @@ class TranslationActivities:
             # TODO Add a logging message using the activity logger at the debug
             # level stating that the activity completed successfully. Include
             # the term, language_code and result in your message.
+            #activity.logger.info(f"translate_term Activity invoked for term '{input.term}' into language '{input.language_code}' with result '{response.translation}'")
+            activity.logger.info(f"translate_term Activity invoked for term '{input.term}' into language '{input.language_code}' with result '{response}'")
             return response

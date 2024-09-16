@@ -68,7 +68,20 @@ async def test_send_bill_typical_order():
     assert 2600 == confirmation.amount
 
 
-# TODO implement test_send_bill_applies_discount
+@pytest.mark.asyncio
+async def test_send_bill_applies_discount():
+    bill = Bill(
+        customer_id=12983,
+        order_number="XD001",
+        description="5 large cheese pizzas",
+        amount=6500, # amount qualifies for discount
+    )
+    activity_environment = ActivityEnvironment()
+    activities = PizzaOrderActivities()
+    confirmation = await activity_environment.run(activities.send_bill, bill)
+
+    assert "XD001" == confirmation.order_number
+    assert 6000 == confirmation.amount
 
 
 @pytest.mark.asyncio

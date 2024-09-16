@@ -25,4 +25,6 @@ async def test_successful_translation():
                     id="test-translation-workflow-id",
                     task_queue="test-translation-workflow",
                 )
-                # TODO add assertions here
+                assert "Bonjour, Pierre" == output.hello_message
+                assert "Au revoir, Pierre" == output.goodbye_message
+
